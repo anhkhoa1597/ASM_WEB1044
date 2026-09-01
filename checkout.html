@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COFFEE - Thanh toán</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">COFFEE</a>
+
+        <nav class="main-nav">
+          <a href="index.html">Trang chủ</a>
+          <a href="products.html">Sản phẩm</a>
+          <a href="cart.html">Giỏ hàng</a>
+          <a href="checkout.html" class="active">Thanh toán</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <p class="eyebrow">Thanh toán</p>
+          <h1>Thanh toán</h1>
+          <p>Nhập thông tin nhận hàng để quán chuẩn bị và giao món cho bạn.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container checkout-layout">
+          <form class="checkout-form" action="#">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Họ và tên</label>
+                <input type="text" id="name" placeholder="Nguyễn Văn A" />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" placeholder="0901234567" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Địa chỉ giao hàng</label>
+              <input type="text" id="address" placeholder="Số nhà, đường, phường/xã" />
+            </div>
+
+            <div class="form-group">
+              <label for="note">Ghi chú</label>
+              <textarea id="note" rows="4" placeholder="Ví dụ: ít đá, giao giờ nghỉ trưa"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="branch">Chi nhánh gần bạn</label>
+              <select id="branch">
+                <option>Quận 1</option>
+                <option>Quận 3</option>
+                <option>Quận Bình Thạnh</option>
+              </select>
+            </div>
+
+            <div class="payment-list">
+              <label>
+                <input type="radio" name="payment" checked />
+                Thanh toán khi nhận hàng
+              </label>
+              <label>
+                <input type="radio" name="payment" />
+                Chuyển khoản ngân hàng
+              </label>
+            </div>
+
+            <button type="submit" class="btn">Đặt hàng</button>
+          </form>
+
+          <aside class="order-box">
+            <h3>Đơn hàng của bạn</h3>
+            <div class="summary-line">
+              <span>Cà phê sữa đá x2</span>
+              <strong>70.000 đ</strong>
+            </div>
+            <div class="summary-line">
+              <span>Cappuccino x1</span>
+              <strong>50.000 đ</strong>
+            </div>
+            <div class="summary-line">
+              <span>Phí giao hàng</span>
+              <strong>15.000 đ</strong>
+            </div>
+            <div class="summary-line">
+              <span>Tổng cộng</span>
+              <strong class="summary-total">135.000 đ</strong>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Bản quyền © 2026 Đặng Anh Khoa</p>
+      </div>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
