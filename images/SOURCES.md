@@ -1,0 +1,56 @@
+# Image Sources
+
+Ghi chu: anh duoc tai ve de minh hoa san pham trong bai hoc/ASM. Neu dung cho muc dich thuong mai, nen kiem tra lai quyen su dung va yeu cau ghi cong cua tung nguon.
+
+| File | Product | Source |
+| --- | --- | --- |
+| robusta-buon-ma-thuot.jpg | Ca phe Robusta Buon Ma Thuot 500g | https://dalatcoffee.com.vn/robusta-bmt-rang-dam-1 |
+| arabica-cau-dat.jpg | Ca phe Arabica Cau Dat 500g | https://namsancoffee.com/ca-phe-dac-san-arabica.html |
+| blend-house.jpg | Ca phe Blend House 500g | https://dritan-alsela.de/pages/cafe |
+| robusta-honey.jpg | Ca phe Robusta Honey 500g | https://chomienphi.vn/product/ca-phe-robusta-honey-rang-xay-nguyen-chat-dang-bot-90s-coffee-vietnam-100-ca-phe-sach-cao-cap-p68357168 |
+| arabica-typica.jpg | Ca phe Arabica Typica 250g | https://shopee.vn/themarriedbeans_49 |
+| arabica-bourbon.jpg | Ca phe Arabica Bourbon 250g | https://1500mcoffee.com/san-pham/ca-phe-arabica-yellow-bourbon/ |
+| espresso-blend.jpg | Ca phe Espresso Blend 500g | https://coffeeconcept.vn/products/ca-phe-rang-xay-espresso-blend |
+| ethiopia-sidamo.jpg | Ca phe Ethiopia Sidamo 250g | https://elitecuproasters.net/en-sa/products/%D8%A7%D8%AB%D9%8A%D9%88%D8%A8%D9%8A%D8%A7-%D8%B3%D9%8A%D8%AF%D8%A7%D9%85%D9%88-%D8%A8%D9%8A%D9%86%D8%B3%D8%A7-1 |
+| colombia-supremo.jpg | Ca phe Colombia Supremo 250g | https://askurukahvecisi.com/colombia-supremo-filtre-kahve-250-gr/ |
+| brazil-santos.jpg | Ca phe Brazil Santos 500g | https://babubean.pl/pl/p/Kawa-ziarnista-Brazil-Santos/95 |
+| robusta-xay-phin.jpg | Ca phe Robusta xay phin 500g | https://metrang.com.vn/collections/all |
+| arabica-xay-phin.jpg | Ca phe Arabica xay phin 500g | https://metrang.com.vn/ca-phe-bot-arabica-arabica-ground-coffee |
+| blend-truyen-thong.jpg | Ca phe Blend truyen thong 500g | https://longdan.co.uk/products/lamant-traditional-blend-arabica-robusta-blend-ground-coffee-500g-case-20 |
+| espresso-xay.jpg | Ca phe Espresso xay may 500g | https://store.alameedcoffee.com/products/espresso-ground-coffee |
+| moka-cau-dat.jpg | Ca phe Moka Cau Dat xay 250g | https://90scoffee.vn/en/pham/coffee-hat-moka-cau-dat/ |
+| decaf.jpg | Ca phe Decaf 250g | https://puravita.pl/products/puracaffe-decaf-250g |
+| drip-bag-arabica.jpg | Ca phe Drip Bag Arabica 10 goi | https://voido.coffee/ca-phe-phin-giay-drip-bag-arabica-tien-loi-voi-do-dalat |
+| drip-bag-robusta.jpg | Ca phe Drip Bag Robusta 10 goi | https://earlymorning.vn/robusta-drip-bag-coffee-ca-phe-phin-giay-tui-10-goi |
+| drip-bag-ethiopia.jpg | Ca phe Drip Bag Ethiopia 5 goi | https://cupsulah.com/products/ethiopia-drip-bag |
+| combo-drip-bag.jpg | Combo Drip Bag 5 vi | https://shopee.vn/Drip-Bag-Coffee-Combo-5-g%C3%B3i-c%C3%A0-ph%C3%AA-d%C3%B9ng-th%E1%BB%AD-Zili-Coffee-i.289720166.22413075075 |
+| cold-brew-arabica.jpg | Cold Brew Arabica 5 tui loc | https://daymakercoffeeroasters.ca/products/cold-brew-filter-bags-5-pack |
+| cold-brew-blend.jpg | Cold Brew Blend 10 tui loc | https://cleonacoffeeroasters.com/cold-brew-pouches/ |
+| cold-brew-ethiopia.jpg | Cold Brew Ethiopia 5 tui loc | https://sofecoffee.com/products/cold-brew-bag |
+| hoa-tan-den.jpg | Ca phe hoa tan den 20 goi | https://bachhoa.extra.vn/mr-viet-ca-phe-hoa-tan-den-americano-mr-viet-black-instant-coffee-l234973869.html |
+| hoa-tan-3in1.jpg | Ca phe hoa tan 3in1 20 goi | https://www.vietsway.com/products/vn_fc1-2 |
+| cappuccino-hoa-tan.jpg | Ca phe hoa tan Cappuccino 12 goi | https://www.walmart.com/ip/118765503 |
+| capsule-intenso.jpg | Vien nen Espresso Intenso 10 vien | https://www.management-tricks.de/ratgeber/haushalt-wohnen/kuechenkleingeraete/kaffeemaschinen/cellini-instant-espresso/ |
+| capsule-arabica.jpg | Vien nen Espresso Arabica 10 vien | https://mantovafood.com/collections/espresso-coffee |
+| capsule-lungo.jpg | Vien nen Lungo 10 vien | https://www.kaffekapslen.de/lungo-alltagskaffee-kaffekapslen-nespresso.html |
+| phin-nhom.jpg | Phin ca phe nhom truyen thong | https://phuongvycoffee.com/products/phin-nhom-pha-ca-phe |
+| phin-inox.jpg | Phin ca phe inox | https://www.nellisauction.com/p/Nguyen-Coffee-Supply-Original-Phin-Filter-Stainless-Steel-12oz/50117155 |
+| v60.jpg | Binh pha ca phe V60 | https://www.feitodecafe.com.br/products/cafeteira-de-vidro-v60-premium |
+| filter-v60.jpg | Giay loc V60 100 to | https://sgt.com.vn/products/giay-loc-ca-phe-hario-v60-1-2-cups-100-to |
+| french-press.jpg | Binh French Press 600ml | https://www.healthy961.com/products/classic-french-press-600ml |
+| moka-pot.jpg | Binh Moka Pot 3 Cup | https://cuppaespresso.com/products/cuppa-moka-pot-3-cups |
+| binh-cold-brew.jpg | Binh Cold Brew 1L | https://hachihachi.com.vn/vat-dung-cho-tra-ca-pheruou/binh-pha-tra-ca-phe-cold-brew-hario-1l-mcpn14b-den |
+| can-ca-phe.jpg | Can dien tu pha ca phe | https://volcanovietnam.com/can-dien-tu-1 |
+| am-co-ngong.jpg | Am rot co ngong 600ml | https://au.vicedeal.com/products/seluna-wooden-handle-stainless-steel-gooseneck-kettle-hand-drip-coffee-pot-pour-over-coffee-tea-pot-barista-coffee-maker-brewer-1 |
+| may-xay-cam-tay.jpg | May xay ca phe cam tay | https://www.soulhandpro.com/products/sh012-coffee-grinder |
+| may-xay-dien.jpg | May xay ca phe dien mini | https://telo.vn/products/may-xay-ca-phe-silvercrest-mini |
+| ly-giu-nhiet.jpg | Ly giu nhiet Coffee 500ml | https://www.locknlock.vn/vi-vn/b%C3%ACnh-gi%E1%BB%AF-nhi%E1%BB%87t-locknlock-metro-cafe-500ml---3-m%C3%A0u-%C4%91en%2C-chocolate%2C-ng%C3%A0---lhc4357/LHC4357.html |
+| coc-su.jpg | Coc su Coffee Lover | https://www.zusss.nl/products/koffiemok-coffee-lover-wit-goud-wit-goud |
+| hu-thuy-tinh.jpg | Hu thuy tinh dung ca phe 500ml | https://blacktaste.sa/EZzwyoY |
+| muong-dong.jpg | Muong dong ca phe inox | https://linesideas.com/products/PLASTIC-COFFEE-SCOOP |
+| combo-ca-phe-viet.jpg | Combo ca phe Viet | https://www.acomoca.com/product-page/vietnamesephinfiltercombo |
+| combo-arabica.jpg | Combo trai nghiem Arabica | https://arabicacoffeeus.com/products/arabica-coffee-gift-box-copy |
+| combo-pour-over.jpg | Combo Pour Over Starter | https://owlvericks.com/product/pouroverkit |
+| combo-cold-brew.jpg | Combo Cold Brew tai nha | https://www.hinterlandempire.com/store/p793/rumblejar.html |
+| gift-premium.jpg | Hop qua ca phe Premium | https://delightphin.com/products/set-qua-tang-ca-phe-trai-nghiem-4-loai-cafe-nguyen-chat-pha-phin-tai-nha-moi-loai-100gr-loai-dac-biet-moka-arabica-robusta |
+| gift-vietnam.jpg | Hop qua ca phe Viet Nam | https://shopee.vn/Set-qu%C3%A0-t%E1%BA%B7ng-c%C3%A0-ph%C3%AA-Vi%E1%BB%87t-Nam-B%E1%BB%99-qu%C3%A0-t%E1%BA%B7ng-y%C3%AAu-n%C6%B0%E1%BB%9Bc-C%E1%BB%99ng-C%C3%A0-Ph%C3%AA-i.354028981.27833927844 |

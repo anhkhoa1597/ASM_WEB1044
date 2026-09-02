@@ -1,131 +1,14 @@
-const products = [
-  {
-    id: 1,
-    name: "Cà phê sữa đá",
-    price: 35000,
-    oldPrice: 45000,
-    image: "./images/photo-1509042239860-f550ce710b93.jpeg",
-    description: "Cà phê đậm vị, thêm sữa đặc và đá mát.",
-    category: "Cà phê Việt",
-    stock: 30,
-    hot: true,
-    newProduct: false,
-    sale: true,
-  },
-  {
-    id: 2,
-    name: "Cà phê đen đá",
-    price: 30000,
-    oldPrice: 40000,
-    image: "./images/photo-1495474472287-4d71bcdd2085.jpeg",
-    description: "Vị cà phê nguyên bản, thơm và ít ngọt.",
-    category: "Cà phê Việt",
-    stock: 25,
-    hot: true,
-    newProduct: false,
-    sale: true,
-  },
-  {
-    id: 3,
-    name: "Cappuccino",
-    price: 50000,
-    oldPrice: 60000,
-    image: "./images/photo-1514432324607-a09d9b4aefdd.jpeg",
-    description: "Lớp bọt sữa mềm, vị cà phê cân bằng.",
-    category: "Espresso",
-    stock: 20,
-    hot: true,
-    newProduct: false,
-    sale: true,
-  },
-  {
-    id: 4,
-    name: "Latte nóng",
-    price: 55000,
-    oldPrice: 65000,
-    image: "./images/photo-1461023058943-07fcbe16d735.jpeg",
-    description: "Cà phê sữa nóng dịu vị, thơm béo dễ uống.",
-    category: "Espresso",
-    stock: 20,
-    hot: false,
-    newProduct: true,
-    sale: true,
-  },
-  {
-    id: 5,
-    name: "Bạc xỉu",
-    price: 40000,
-    oldPrice: 40000,
-    image: "./images/photo-1509042239860-f550ce710b93.jpeg",
-    description: "Nhiều sữa, ít cà phê, ngọt dịu và dễ uống.",
-    category: "Cà phê Việt",
-    stock: 25,
-    hot: false,
-    newProduct: true,
-    sale: false,
-  },
-  {
-    id: 6,
-    name: "Americano",
-    price: 45000,
-    oldPrice: 45000,
-    image: "./images/photo-1495474472287-4d71bcdd2085.jpeg",
-    description: "Espresso pha loãng, thơm rõ và ít béo.",
-    category: "Espresso",
-    stock: 15,
-    hot: false,
-    newProduct: true,
-    sale: false,
-  },
-  {
-    id: 7,
-    name: "Cold Brew",
-    price: 60000,
-    oldPrice: 70000,
-    image: "./images/photo-1461023058943-07fcbe16d735.jpeg",
-    description: "Ủ lạnh nhiều giờ, vị êm và ít đắng gắt.",
-    category: "Cold Brew",
-    stock: 15,
-    hot: true,
-    newProduct: true,
-    sale: true,
-  },
-  {
-    id: 8,
-    name: "Mocha",
-    price: 60000,
-    oldPrice: 70000,
-    image: "./images/photo-1514432324607-a09d9b4aefdd.jpeg",
-    description: "Espresso, sữa và chocolate thơm ngọt.",
-    category: "Espresso",
-    stock: 15,
-    hot: true,
-    newProduct: false,
-    sale: true,
-  },
-];
+import { products } from "./data.js";
 
 const formatPrice = (price) => {
   return price.toLocaleString("vi-VN") + " đ";
 };
 
-// const findProductById = (id) => {
-//   return products.find((p) => p.id == id);
-// };
-
-const getHotProducts = () => {
-  return products.filter((p) => p.hot);
+const findProductById = (id) => {
+  return products.find((p) => p.id == id);
 };
 
-const getNewProducts = () => {
-  return products.filter((p) => p.newProduct);
-};
-
-const getSaleProducts = () => {
-  return products.filter((p) => p.sale);
-};
-
-const createProductHTML = (product) => {
+const createProductCardHTML = (product) => {
   let oldPriceHTML = "";
 
   if (product.oldPrice > product.price) {
@@ -137,13 +20,13 @@ const createProductHTML = (product) => {
       <img src="${product.image}" alt="${product.name}" />
       <div class="product-info">
         <h3>${product.name}</h3>
-        <p>${product.description}</p>
+        <p>${product.shortDescription}</p>
         <div class="price">
           ${oldPriceHTML}
           <span class="sale-price">${formatPrice(product.price)}</span>
         </div>
         <div class="card-actions">
-          <a href="detail.html?product-id=${product.id}" class="btn btn-outline">Xem chi tiết</a>
+          <a href="detail.html?id=${product.id}" class="btn btn-outline">Xem chi tiết</a>
           <a href="cart.html" class="btn">Thêm vào giỏ</a>
         </div>
       </div>
@@ -155,18 +38,14 @@ const renderProducts = (container, list) => {
   if (!container) {
     return;
   }
-
   if (list.length == 0) {
     container.innerHTML = `<p class="empty-message">Không tìm thấy sản phẩm.</p>`;
     return;
   }
-
   let html = "";
-
   list.forEach((p) => {
-    html += createProductHTML(p);
+    html += createProductCardHTML(p);
   });
-
   container.innerHTML = html;
 };
 
@@ -183,56 +62,222 @@ const renderProductSection = (sectionId, list) => {
   renderProducts(productGrid, list.slice(0, 3));
 };
 
-const updateProductCount = (count) => {
-  const productCount = document.getElementById("products-count");
+const getFilteredProducts = () => {
+  const searchValue = document
+    .getElementById("search-product")
+    .value.trim()
+    .toLowerCase();
 
-  if (productCount) {
-    productCount.textContent = count + " sản phẩm";
-  }
-};
+  const categoryValue = document.getElementById("category-product").value;
 
-const getProductsByFilter = (filterName) => {
-  if (filterName == "hot") {
-    return getHotProducts();
-  }
-  if (filterName == "new") {
-    return getNewProducts();
-  }
-  if (filterName == "sale") {
-    return getSaleProducts();
-  }
-  return products;
-};
+  const statusValue = document.getElementById("status-product").value;
 
-const renderProductsPage = () => {
-  const filterBox = document.getElementById("product-filter");
-  const productList = document.getElementById("products-list");
+  const maxPrice = Number(document.getElementById("max-price").value);
 
-  if (!filterBox || !productList) {
-    return;
-  }
+  let filteredProducts = products.filter((p) => {
+    const matchSearch = p.name.toLowerCase().includes(searchValue);
 
-  const filterButtons = filterBox.querySelectorAll(".filter-btn");
+    const matchCategory =
+      categoryValue === "all" || p.category === categoryValue;
 
-  const showProducts = (filterName) => {
-    const filteredProducts = getProductsByFilter(filterName);
-    renderProducts(productList, filteredProducts);
-  };
+    const matchPrice = p.price <= maxPrice;
 
-  filterButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterButtons.forEach((item) => item.classList.remove("active"));
-      btn.classList.add("active");
-      showProducts(btn.dataset.filter);
-    });
+    let matchStatus = true;
+
+    switch (statusValue) {
+      case "hot":
+        matchStatus = p.hot;
+        break;
+
+      case "new":
+        matchStatus = p.newProduct;
+        break;
+
+      case "sale":
+        matchStatus = p.sale;
+        break;
+    }
+
+    return matchSearch && matchCategory && matchStatus && matchPrice;
   });
 
-  showProducts("all");
+  const sortValue = document.getElementById("sort-product").value;
+
+  if (sortValue === "price-asc") {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  }
+
+  if (sortValue === "price-desc") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  }
+
+  if (sortValue === "name-asc") {
+    filteredProducts.sort((a, b) => a.name.localeCompare(b.name, "vi"));
+  }
+
+  if (sortValue === "name-desc") {
+    filteredProducts.sort((a, b) => b.name.localeCompare(a.name, "vi"));
+  }
+
+  return filteredProducts;
+};
+
+const renderFilteredProducts = () => {
+  const productList = document.getElementById("products-list");
+  if (!productList) {
+    return;
+  }
+  const filteredProducts = getFilteredProducts();
+  const productCount = document.getElementById("product-count");
+  if (productCount) {
+    productCount.textContent = filteredProducts.length + " sản phẩm";
+  }
+  renderProducts(productList, filteredProducts);
+};
+const updateMaxPriceSpan = () => {
+  const maxPrice = document.getElementById("max-price");
+  const maxPriceValue = document.getElementById("max-price-value");
+  maxPriceValue.textContent = formatPrice(Number(maxPrice.value));
+};
+
+const resetFilter = () => {
+  document.getElementById("search-product").value = "";
+  document.getElementById("category-product").value = "all";
+  document.getElementById("status-product").value = "all";
+  document.getElementById("max-price").value = "550000";
+  document.getElementById("sort-product").value = "default";
+
+  updateMaxPriceSpan();
+  renderFilteredProducts();
+
+  window.history.replaceState({}, "", "products.html");
+};
+const initHomePage = () => {
+  const mainPage = document.getElementById("home-page");
+  if (!mainPage) {
+    return;
+  }
+  renderProductSection(
+    "hot-products",
+    products.filter((p) => p.hot),
+  );
+  renderProductSection(
+    "new-products",
+    products.filter((p) => p.newProduct),
+  );
+  renderProductSection(
+    "sale-products",
+    products.filter((p) => p.sale),
+  );
+};
+
+const initProductsPage = () => {
+  const productsPage = document.getElementById("products-page");
+  if (!productsPage) {
+    return;
+  }
+  const searchInput = document.getElementById("search-product");
+  const categorySelect = document.getElementById("category-product");
+  const statusSelect = document.getElementById("status-product");
+  const maxPrice = document.getElementById("max-price");
+  const sortSelect = document.getElementById("sort-product");
+  const resetButton = document.getElementById("reset-filter");
+
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get("status");
+  const validStatus = ["hot", "new", "sale"];
+  if (validStatus.includes(status)) {
+    document.getElementById("status-product").value = status;
+  }
+
+  updateMaxPriceSpan();
+  renderFilteredProducts();
+  searchInput.addEventListener("input", renderFilteredProducts);
+  categorySelect.addEventListener("change", renderFilteredProducts);
+  statusSelect.addEventListener("change", renderFilteredProducts);
+  maxPrice.addEventListener("input", () => {
+    updateMaxPriceSpan();
+    renderFilteredProducts();
+  });
+  sortSelect.addEventListener("change", renderFilteredProducts);
+  resetButton.addEventListener("click", resetFilter);
+};
+
+const initDetailPage = () => {
+  const detailPage = document.getElementById("detail-page");
+  if (!detailPage) {
+    return;
+  }
+  const productDetail = document.getElementById("product-detail");
+  const params = new URLSearchParams(window.location.search);
+  const id = Number(params.get("id"));
+  const product = findProductById(id);
+  if (!product) {
+    productDetail.classList.add("not-found");
+    productDetail.innerHTML = `
+      <div class="not-found-icon">☕</div>
+      <h1>Không tìm thấy sản phẩm</h1>
+      <p>
+        Sản phẩm bạn đang tìm không tồn tại hoặc có thể đã được gỡ khỏi cửa hàng.
+      </p>
+      <div class="not-found-actions">
+        <a href="products.html" class="btn">
+          Xem tất cả sản phẩm
+        </a>
+        <a href="index.html" class="btn btn-outline">
+          Về trang chủ
+        </a>
+      </div>
+    `;
+  } else {
+    let oldPriceHTML = "";
+    if (product.oldPrice > product.price) {
+      oldPriceHTML = `<span class="old-price">${formatPrice(product.oldPrice)}</span>`;
+    }
+    let detailsHTML = "";
+    product.details.forEach((d) => {
+      detailsHTML += `<li>${d}</li>`;
+    });
+
+    productDetail.innerHTML = `
+      <img
+        class="detail-image"
+        src="${product.image}"
+        alt="${product.name}"
+      />
+      <div class="detail-content">
+        <h2>${product.name}</h2>
+        <div class="price">
+          ${oldPriceHTML}
+          <span class="sale-price">${formatPrice(product.price)}</span>
+        </div>
+        <p>
+          ${product.longDescription}
+        </p>
+        <ul class="detail-list">
+          ${detailsHTML}
+        </ul>
+        <div class="buy-box">
+          <input
+            type="number"
+            value="1"
+            min="1"
+            aria-label="Số lượng sản phẩm"
+          />
+          <a href="cart.html" class="btn">Thêm vào giỏ</a>
+        </div>
+      </div>
+    `;
+    const category = product.category;
+    renderProductSection(
+      "relate-products",
+      products.filter((p) => p.category == category && p.id !== product.id),
+    );
+  }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderProductSection("hot-products", getHotProducts());
-  renderProductSection("new-products", getNewProducts());
-  renderProductSection("sale-products", getSaleProducts());
-  renderProductsPage();
+  initHomePage();
+  initProductsPage();
+  initDetailPage();
 });

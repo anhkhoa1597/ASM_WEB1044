@@ -21,88 +21,130 @@
       </div>
     </header>
 
-    <main>
+    <main id="products-page">
       <section class="page-hero">
         <div class="container">
-          <p class="eyebrow">Menu cà phê</p>
+          <p class="eyebrow">Cửa hàng cà phê</p>
+
           <h1>Sản phẩm</h1>
-          <p>Chọn món cà phê bạn thích và thêm vào giỏ hàng để đặt nhanh.</p>
+
+          <p>
+            Khám phá cà phê hạt, cà phê rang xay, drip bag, cold brew, dụng cụ
+            pha và nhiều sản phẩm dành cho người yêu cà phê.
+          </p>
         </div>
       </section>
 
       <section id="filter-products" class="section">
         <div class="container products-layout">
           <aside class="filter-sidebar">
-            <form class="filter-panel" action="#">
+            <div class="filter-panel">
               <h2>Bộ lọc</h2>
-
               <div class="filter-group">
-                <label class="filter-label" for="search-product">Tìm sản phẩm</label>
-                <input type="text" id="search-product" placeholder="Nhập tên sản phẩm" />
+                <label class="filter-label" for="search-product">
+                  Tìm sản phẩm
+                </label>
+                <input
+                  type="text"
+                  id="search-product"
+                  placeholder="Nhập tên sản phẩm..."
+                />
               </div>
-
               <div class="filter-group">
-                <label class="filter-label" for="category-product">Danh mục</label>
+                <label class="filter-label" for="category-product">
+                  Danh mục
+                </label>
                 <div class="select-wrap">
                   <select id="category-product">
-                    <option>Tất cả danh mục</option>
-                    <option>Cà phê Việt</option>
-                    <option>Espresso</option>
-                    <option>Cold Brew</option>
+                    <option value="all">Tất cả danh mục</option>
+                    <option value="Cà phê hạt">Cà phê hạt</option>
+                    <option value="Cà phê xay">Cà phê xay</option>
+                    <option value="Drip Bag">Drip Bag</option>
+                    <option value="Cold Brew">Cold Brew</option>
+                    <option value="Cà phê hòa tan">Cà phê hòa tan</option>
+                    <option value="Capsule">Capsule</option>
+                    <option value="Dụng cụ pha">Dụng cụ pha</option>
+                    <option value="Máy xay">Máy xay</option>
+                    <option value="Phụ kiện">Phụ kiện</option>
+                    <option value="Combo">Combo</option>
+                    <option value="Quà tặng">Quà tặng</option>
                   </select>
                 </div>
               </div>
+              <div class="filter-group">
+                <label class="filter-label" for="status-product">
+                  Trạng thái
+                </label>
 
-              <div id="product-filter" class="filter-group">
-                <label class="filter-label" for="status-product">Trạng thái</label>
                 <div class="select-wrap">
                   <select id="status-product">
-                    <option>Tất cả sản phẩm</option>
-                    <option>Bán chạy</option>
-                    <option>Sản phẩm mới</option>
-                    <option>Giảm giá</option>
+                    <option value="all">Tất cả sản phẩm</option>
+                    <option value="hot">Bán chạy</option>
+                    <option value="new">Sản phẩm mới</option>
+                    <option value="sale">Đang giảm giá</option>
                   </select>
                 </div>
               </div>
-
               <div class="filter-group">
-                <p class="filter-label">Khoảng giá</p>
-                <div class="price-range">
-                  <input type="range" min="0" max="100" value="20" aria-label="Giá thấp nhất" />
-                  <input type="range" min="0" max="100" value="80" aria-label="Giá cao nhất" />
-                </div>
-                <div class="range-values">
-                  <span>20.000 đ</span>
-                  <span>80.000 đ</span>
-                </div>
-              </div>
+                <label class="filter-label" for="max-price"> Giá tối đa </label>
 
-              <div class="filter-actions">
-                <button class="btn" type="button">Áp dụng</button>
-                <a href="products.html" class="btn btn-outline">Xóa lọc</a>
+                <div class="price-filter">
+                  <input
+                    type="range"
+                    id="max-price"
+                    min="50000"
+                    max="550000"
+                    step="10000"
+                    value="550000"
+                  />
+
+                  <div class="price-filter-value">
+                    <span>Từ 0 đ</span>
+
+                    <strong>
+                      đến
+                      <span id="max-price-value"> 550.000 đ </span>
+                    </strong>
+                  </div>
+                </div>
               </div>
-            </form>
+              <div class="filter-actions">
+                <button id="reset-filter" class="btn btn-outline" type="button">
+                  Xóa bộ lọc
+                </button>
+              </div>
+            </div>
           </aside>
 
           <div class="products-content">
             <div class="toolbar">
-              <h2>Danh sách sản phẩm</h2>
+              <div>
+                <h2>Danh sách sản phẩm</h2>
+                <span id="product-count"> 0 sản phẩm </span>
+              </div>
+
               <div class="toolbar-actions">
-                <span>8 sản phẩm</span>
-                <label class="sort-label" for="sort-product">Sắp xếp</label>
+                <label class="sort-label" for="sort-product"> Sắp xếp </label>
+
                 <div class="select-wrap sort-select">
                   <select id="sort-product">
-                    <option>Mặc định</option>
-                    <option>Giá thấp đến cao</option>
-                    <option>Giá cao đến thấp</option>
-                    <option>Mới nhất</option>
-                    <option>Bán chạy</option>
+                    <option value="default">Mặc định</option>
+
+                    <option value="price-asc">Giá thấp đến cao</option>
+
+                    <option value="price-desc">Giá cao đến thấp</option>
+
+                    <option value="name-asc">Tên A - Z</option>
+
+                    <option value="name-desc">Tên Z - A</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            <div id="products-list" class="product-grid products-page-grid"></div>
+            <div id="products-list" class="product-grid products-page-grid">
+              <!-- JavaScript render sản phẩm tại đây -->
+            </div>
           </div>
         </div>
       </section>
@@ -113,6 +155,7 @@
         <p>Bản quyền © 2026 Đặng Anh Khoa</p>
       </div>
     </footer>
-    <script src="app.js"></script>
+
+    <script type="module" src="app.js"></script>
   </body>
 </html>
