@@ -3,108 +3,205 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>COFFEE - Thanh toán</title>
+    <title>CÔFÊ SHOP - Thanh toán</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
+  <body class="checkout-page-body">
     <header class="site-header">
       <div class="container header-inner">
-        <a href="index.html" class="logo">COFFEE</a>
+        <a href="index.html" class="logo">CÔFÊ SHOP</a>
 
-        <nav class="main-nav">
+        <nav class="main-nav desktop-nav">
           <a href="index.html">Trang chủ</a>
           <a href="products.html">Sản phẩm</a>
-          <a href="cart.html">Giỏ hàng</a>
+          <a href="cart.html">
+            Giỏ hàng
+            <span class="nav-cart-count">0</span>
+          </a>
           <a href="checkout.html" class="active">Thanh toán</a>
+          <a href="login.html">Tài khoản</a>
         </nav>
+
+        <details class="mobile-nav">
+          <summary title="Menu">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg class="close-icon" viewBox="0 0 24 24">
+              <path d="m6 6 12 12M18 6 6 18" />
+            </svg>
+          </summary>
+
+          <nav class="main-nav mobile-menu">
+            <a href="index.html">Trang chủ</a>
+            <a href="products.html">Sản phẩm</a>
+            <a href="cart.html">
+              Giỏ hàng
+              <span class="nav-cart-count">0</span>
+            </a>
+            <a href="checkout.html" class="active">Thanh toán</a>
+            <a href="login.html">Tài khoản</a>
+          </nav>
+        </details>
       </div>
     </header>
 
-    <main>
-      <section class="page-hero">
+    <main id="checkout-page">
+      <section class="checkout-section">
         <div class="container">
-          <p class="eyebrow">Thanh toán</p>
-          <h1>Thanh toán</h1>
-          <p>Nhập thông tin nhận hàng để quán chuẩn bị và giao món cho bạn.</p>
-        </div>
-      </section>
+          <div class="checkout-page-heading">
+            <p class="section-eyebrow">Thanh toán</p>
+            <h1>Hoàn tất đơn hàng</h1>
+            <p>Nhập thông tin nhận hàng và chọn phương thức thanh toán.</p>
+          </div>
 
-      <section class="section">
-        <div class="container checkout-layout">
-          <form class="checkout-form" action="#">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Họ và tên</label>
-                <input type="text" id="name" placeholder="Nguyễn Văn A" />
+          <div class="checkout-layout">
+            <form class="checkout-form" action="#">
+              <div class="checkout-form-section">
+                <div class="checkout-form-heading">
+                  <span>1</span>
+                  <div>
+                    <p>Thông tin giao hàng</p>
+                    <h2>Người nhận</h2>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="name">Họ và tên</label>
+                    <input
+                      type="text"
+                      id="name"
+                      placeholder="Nguyễn Văn A"
+                      autocomplete="name"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      placeholder="0901 234 567"
+                      autocomplete="tel"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="address">Địa chỉ giao hàng</label>
+                  <input
+                    type="text"
+                    id="address"
+                    placeholder="Số nhà, tên đường, phường/xã"
+                    autocomplete="street-address"
+                    required
+                  />
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="branch">Chi nhánh gần bạn</label>
+                    <select id="branch">
+                      <option>Quận 1</option>
+                      <option>Quận 3</option>
+                      <option>Quận Bình Thạnh</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="note">Ghi chú <span>(không bắt buộc)</span></label>
+                    <input type="text" id="note" placeholder="Ví dụ: giao giờ hành chính" />
+                  </div>
+                </div>
               </div>
 
-              <div class="form-group">
-                <label for="phone">Số điện thoại</label>
-                <input type="tel" id="phone" placeholder="0901234567" />
+              <fieldset class="checkout-form-section payment-section">
+                <legend class="checkout-form-heading">
+                  <span>2</span>
+                  <span>
+                    <small>Thanh toán</small>
+                    <strong>Phương thức thanh toán</strong>
+                  </span>
+                </legend>
+
+                <div class="payment-list">
+                  <label class="payment-option">
+                    <input type="radio" name="payment" checked />
+                    <span>
+                      <strong>Thanh toán khi nhận hàng</strong>
+                      <small>Thanh toán trực tiếp cho đơn vị vận chuyển.</small>
+                    </span>
+                  </label>
+
+                  <label class="payment-option">
+                    <input type="radio" name="payment" />
+                    <span>
+                      <strong>Chuyển khoản ngân hàng</strong>
+                      <small>Thông tin chuyển khoản sẽ được gửi sau.</small>
+                    </span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <button type="submit" class="btn checkout-submit">
+                Đặt hàng
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </button>
+            </form>
+
+            <aside class="order-box checkout-summary">
+              <div class="checkout-summary-heading">
+                <div>
+                  <p>Đơn hàng</p>
+                  <h2>Đơn hàng của bạn</h2>
+                </div>
+                <a href="cart.html">Chỉnh sửa</a>
               </div>
-            </div>
 
-            <div class="form-group">
-              <label for="address">Địa chỉ giao hàng</label>
-              <input
-                type="text"
-                id="address"
-                placeholder="Số nhà, đường, phường/xã"
-              />
-            </div>
+              <div class="checkout-order-list">
+                <div class="checkout-order-item">
+                  <div>
+                    <strong>Cà phê Robusta Buôn Ma Thuột 500g</strong>
+                    <span>Số lượng: 2</span>
+                  </div>
+                  <strong>290.000 đ</strong>
+                </div>
 
-            <div class="form-group">
-              <label for="note">Ghi chú</label>
-              <textarea
-                id="note"
-                rows="4"
-                placeholder="Ví dụ: ít đá, giao giờ nghỉ trưa"
-              ></textarea>
-            </div>
+                <div class="checkout-order-item">
+                  <div>
+                    <strong>Phin cà phê nhôm truyền thống</strong>
+                    <span>Số lượng: 1</span>
+                  </div>
+                  <strong>45.000 đ</strong>
+                </div>
+              </div>
 
-            <div class="form-group">
-              <label for="branch">Chi nhánh gần bạn</label>
-              <select id="branch">
-                <option>Quận 1</option>
-                <option>Quận 3</option>
-                <option>Quận Bình Thạnh</option>
-              </select>
-            </div>
+              <div class="summary-line">
+                <span>Tạm tính</span>
+                <strong>335.000 đ</strong>
+              </div>
 
-            <div class="payment-list">
-              <label>
-                <input type="radio" name="payment" checked />
-                Thanh toán khi nhận hàng
-              </label>
-              <label>
-                <input type="radio" name="payment" />
-                Chuyển khoản ngân hàng
-              </label>
-            </div>
+              <div class="summary-line">
+                <span>Phí giao hàng</span>
+                <strong>25.000 đ</strong>
+              </div>
 
-            <button type="submit" class="btn">Đặt hàng</button>
-          </form>
+              <div class="summary-line checkout-total-line">
+                <span>Tổng cộng</span>
+                <strong class="summary-total">360.000 đ</strong>
+              </div>
 
-          <aside class="order-box">
-            <h3>Đơn hàng của bạn</h3>
-            <div class="summary-line">
-              <span>Cà phê sữa đá x2</span>
-              <strong>70.000 đ</strong>
-            </div>
-            <div class="summary-line">
-              <span>Cappuccino x1</span>
-              <strong>50.000 đ</strong>
-            </div>
-            <div class="summary-line">
-              <span>Phí giao hàng</span>
-              <strong>15.000 đ</strong>
-            </div>
-            <div class="summary-line">
-              <span>Tổng cộng</span>
-              <strong class="summary-total">135.000 đ</strong>
-            </div>
-          </aside>
+              <p class="checkout-summary-note">
+                Đơn hàng chỉ được xác nhận sau khi bạn kiểm tra lại thông tin.
+              </p>
+            </aside>
+          </div>
         </div>
       </section>
     </main>

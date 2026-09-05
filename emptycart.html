@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CÔFÊ SHOP - Giỏ hàng trống</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="empty-cart-body">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">CÔFÊ SHOP</a>
+
+        <nav class="main-nav desktop-nav">
+          <a href="index.html">Trang chủ</a>
+          <a href="products.html">Sản phẩm</a>
+          <a href="emptycart.html" class="active">Giỏ hàng</a>
+          <a href="checkout.html">Thanh toán</a>
+          <a href="login.html">Tài khoản</a>
+        </nav>
+
+        <details class="mobile-nav">
+          <summary title="Menu">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg class="close-icon" viewBox="0 0 24 24">
+              <path d="m6 6 12 12M18 6 6 18" />
+            </svg>
+          </summary>
+
+          <nav class="main-nav mobile-menu">
+            <a href="index.html">Trang chủ</a>
+            <a href="products.html">Sản phẩm</a>
+            <a href="emptycart.html" class="active">Giỏ hàng</a>
+            <a href="checkout.html">Thanh toán</a>
+            <a href="login.html">Tài khoản</a>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="empty-cart-page">
+      <section class="empty-cart-section">
+        <div class="container">
+          <div class="empty-cart-state">
+            <svg
+              class="empty-cart-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="8" cy="21" r="1" />
+              <circle cx="19" cy="21" r="1" />
+              <path d="M2.05 2.05H4L6.6 14.44A2 2 0 0 0 8.55 16h7.8a2 2 0 0 0 1.95-1.57L20 7H5.12" />
+            </svg>
+
+            <p class="empty-cart-label">Giỏ hàng</p>
+            <h1 id="empty-cart-title">Giỏ hàng của bạn đang trống</h1>
+            <p class="empty-cart-description">
+              Bạn chưa thêm sản phẩm nào. Khám phá các loại cà phê và dụng cụ
+              pha chế để bắt đầu đơn hàng.
+            </p>
+
+            <div class="empty-cart-actions">
+              <a href="products.html" class="btn empty-cart-primary">
+                Xem sản phẩm
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+              <a href="index.html" class="empty-cart-home">Về trang chủ</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Bản quyền © 2026 Đặng Anh Khoa</p>
+      </div>
+    </footer>
+  </body>
+</html>

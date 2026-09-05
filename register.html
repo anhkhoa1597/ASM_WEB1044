@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CÔFÊ SHOP - Đăng ký</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="auth-page-body">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">CÔFÊ SHOP</a>
+
+        <nav class="main-nav desktop-nav">
+          <a href="index.html">Trang chủ</a>
+          <a href="products.html">Sản phẩm</a>
+          <a href="cart.html">
+            Giỏ hàng
+            <span class="nav-cart-count">0</span>
+          </a>
+          <a href="checkout.html">Thanh toán</a>
+          <a href="login.html" class="active">Tài khoản</a>
+        </nav>
+
+        <details class="mobile-nav">
+          <summary title="Menu">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg class="close-icon" viewBox="0 0 24 24">
+              <path d="m6 6 12 12M18 6 6 18" />
+            </svg>
+          </summary>
+
+          <nav class="main-nav mobile-menu">
+            <a href="index.html">Trang chủ</a>
+            <a href="products.html">Sản phẩm</a>
+            <a href="cart.html">
+              Giỏ hàng
+              <span class="nav-cart-count">0</span>
+            </a>
+            <a href="checkout.html">Thanh toán</a>
+            <a href="login.html" class="active">Tài khoản</a>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main class="auth-page">
+      <section class="auth-section">
+        <div class="container">
+          <div class="auth-shell auth-shell-register">
+            <div class="auth-visual auth-visual-register">
+              <div class="auth-visual-content">
+                <p>CÔFÊ SHOP</p>
+                <h2>Bắt đầu hành trình cà phê của bạn.</h2>
+              </div>
+            </div>
+
+            <div class="auth-panel">
+              <div class="auth-heading">
+                <p class="section-eyebrow">Thành viên mới</p>
+                <h1 id="register-title">Tạo tài khoản</h1>
+                <p>Điền thông tin bên dưới để đăng ký tài khoản mới.</p>
+              </div>
+
+              <form class="auth-form" action="#">
+                <div class="auth-form-grid">
+                  <div class="auth-field">
+                    <label for="register-name">Họ và tên</label>
+                    <input
+                      id="register-name"
+                      name="name"
+                      type="text"
+                      placeholder="Nguyễn Văn An"
+                      autocomplete="name"
+                      required
+                    />
+                  </div>
+
+                  <div class="auth-field">
+                    <label for="register-phone">Số điện thoại</label>
+                    <input
+                      id="register-phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="0901 234 567"
+                      autocomplete="tel"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="auth-field">
+                  <label for="register-email">Email</label>
+                  <input
+                    id="register-email"
+                    name="email"
+                    type="email"
+                    placeholder="ban@example.com"
+                    autocomplete="email"
+                    required
+                  />
+                </div>
+
+                <div class="auth-form-grid">
+                  <div class="auth-field">
+                    <label for="register-password">Mật khẩu</label>
+                    <input
+                      id="register-password"
+                      name="password"
+                      type="password"
+                      placeholder="Tối thiểu 8 ký tự"
+                      autocomplete="new-password"
+                      minlength="8"
+                      required
+                    />
+                  </div>
+
+                  <div class="auth-field">
+                    <label for="register-confirm-password"
+                      >Nhập lại mật khẩu</label
+                    >
+                    <input
+                      id="register-confirm-password"
+                      name="confirm-password"
+                      type="password"
+                      placeholder="Nhập lại mật khẩu"
+                      autocomplete="new-password"
+                      minlength="8"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <label class="auth-check auth-terms">
+                  <input type="checkbox" name="terms" required />
+                  <span>Tôi đồng ý với điều khoản sử dụng của CÔFÊ SHOP.</span>
+                </label>
+
+                <button type="submit" class="btn auth-submit">
+                  Tạo tài khoản
+                </button>
+              </form>
+
+              <p class="auth-switch">
+                Đã có tài khoản?
+                <a href="login.html">Đăng nhập</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>Bản quyền © 2026 Đặng Anh Khoa</p>
+      </div>
+    </footer>
+  </body>
+</html>

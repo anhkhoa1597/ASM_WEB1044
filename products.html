@@ -3,147 +3,191 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>COFFEE - Sản phẩm</title>
+    <title>CÔFÊ SHOP - Sản phẩm</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="index.html" class="logo">COFFEE</a>
+        <a href="index.html" class="logo">CÔFÊ SHOP</a>
 
-        <nav class="main-nav">
+        <nav class="main-nav desktop-nav">
           <a href="index.html">Trang chủ</a>
           <a href="products.html" class="active">Sản phẩm</a>
-          <a href="cart.html">Giỏ hàng</a>
+          <a href="cart.html">
+            Giỏ hàng
+            <span class="nav-cart-count">0</span>
+          </a>
           <a href="checkout.html">Thanh toán</a>
+          <a href="login.html">Tài khoản</a>
         </nav>
+
+        <details class="mobile-nav">
+          <summary title="Menu">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg class="close-icon" viewBox="0 0 24 24">
+              <path d="m6 6 12 12M18 6 6 18" />
+            </svg>
+          </summary>
+
+          <nav class="main-nav mobile-menu">
+            <a href="index.html">Trang chủ</a>
+            <a href="products.html" class="active">Sản phẩm</a>
+            <a href="cart.html">
+              Giỏ hàng
+              <span class="nav-cart-count">0</span>
+            </a>
+            <a href="checkout.html">Thanh toán</a>
+            <a href="login.html">Tài khoản</a>
+          </nav>
+        </details>
       </div>
     </header>
 
     <main id="products-page">
-      <section class="page-hero">
+      <section id="filter-products" class="products-section">
         <div class="container">
-          <p class="eyebrow">Cửa hàng cà phê</p>
+          <div class="catalog-heading">
+            <p class="section-eyebrow">Cửa hàng cà phê</p>
+            <h1>Tìm hương vị dành cho bạn</h1>
+            <p>
+              Khám phá cà phê hạt, rang xay, drip bag và dụng cụ pha dành cho
+              mọi phong cách thưởng thức.
+            </p>
+          </div>
 
-          <h1>Sản phẩm</h1>
-
-          <p>
-            Khám phá cà phê hạt, cà phê rang xay, drip bag, cold brew, dụng cụ
-            pha và nhiều sản phẩm dành cho người yêu cà phê.
-          </p>
-        </div>
-      </section>
-
-      <section id="filter-products" class="section">
-        <div class="container products-layout">
-          <aside class="filter-sidebar">
-            <div class="filter-panel">
-              <h2>Bộ lọc</h2>
-              <div class="filter-group">
-                <label class="filter-label" for="search-product">
-                  Tìm sản phẩm
-                </label>
-                <input
-                  type="text"
-                  id="search-product"
-                  placeholder="Nhập tên sản phẩm..."
-                />
-              </div>
-              <div class="filter-group">
-                <label class="filter-label" for="category-product">
-                  Danh mục
-                </label>
-                <div class="select-wrap">
-                  <select id="category-product">
-                    <option value="all">Tất cả danh mục</option>
-                    <option value="Cà phê hạt">Cà phê hạt</option>
-                    <option value="Cà phê xay">Cà phê xay</option>
-                    <option value="Drip Bag">Drip Bag</option>
-                    <option value="Cold Brew">Cold Brew</option>
-                    <option value="Cà phê hòa tan">Cà phê hòa tan</option>
-                    <option value="Capsule">Capsule</option>
-                    <option value="Dụng cụ pha">Dụng cụ pha</option>
-                    <option value="Máy xay">Máy xay</option>
-                    <option value="Phụ kiện">Phụ kiện</option>
-                    <option value="Combo">Combo</option>
-                    <option value="Quà tặng">Quà tặng</option>
-                  </select>
+          <div class="products-layout">
+            <aside class="filter-sidebar">
+              <div class="filter-panel">
+                <div class="filter-panel-heading">
+                  <h2>Bộ lọc</h2>
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"
+                    />
+                    <path d="M1 14h6M9 8h6M17 16h6" />
+                  </svg>
                 </div>
-              </div>
-              <div class="filter-group">
-                <label class="filter-label" for="status-product">
-                  Trạng thái
-                </label>
 
-                <div class="select-wrap">
-                  <select id="status-product">
-                    <option value="all">Tất cả sản phẩm</option>
-                    <option value="hot">Bán chạy</option>
-                    <option value="new">Sản phẩm mới</option>
-                    <option value="sale">Đang giảm giá</option>
-                  </select>
-                </div>
-              </div>
-              <div class="filter-group">
-                <label class="filter-label" for="max-price"> Giá tối đa </label>
-
-                <div class="price-filter">
+                <div class="filter-group">
+                  <label class="filter-label" for="search-product">
+                    Tìm sản phẩm
+                  </label>
                   <input
-                    type="range"
-                    id="max-price"
-                    min="50000"
-                    max="550000"
-                    step="10000"
-                    value="550000"
+                    type="search"
+                    id="search-product"
+                    placeholder="Nhập tên sản phẩm..."
+                    autocomplete="off"
                   />
+                </div>
+                <div class="filter-group">
+                  <label class="filter-label" for="category-product">
+                    Danh mục
+                  </label>
+                  <div class="select-wrap">
+                    <select id="category-product">
+                      <option value="all">Tất cả danh mục</option>
+                      <option value="Cà phê hạt">Cà phê hạt</option>
+                      <option value="Cà phê xay">Cà phê xay</option>
+                      <option value="Drip Bag">Drip Bag</option>
+                      <option value="Cold Brew">Cold Brew</option>
+                      <option value="Cà phê hòa tan">Cà phê hòa tan</option>
+                      <option value="Capsule">Capsule</option>
+                      <option value="Dụng cụ pha">Dụng cụ pha</option>
+                      <option value="Máy xay">Máy xay</option>
+                      <option value="Phụ kiện">Phụ kiện</option>
+                      <option value="Combo">Combo</option>
+                      <option value="Quà tặng">Quà tặng</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="filter-group">
+                  <label class="filter-label" for="status-product">
+                    Trạng thái
+                  </label>
 
-                  <div class="price-filter-value">
-                    <span>Từ 0 đ</span>
+                  <div class="select-wrap">
+                    <select id="status-product">
+                      <option value="all">Tất cả sản phẩm</option>
+                      <option value="hot">Bán chạy</option>
+                      <option value="new">Sản phẩm mới</option>
+                      <option value="sale">Đang giảm giá</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="filter-group">
+                  <label class="filter-label" for="max-price">
+                    Giá tối đa
+                  </label>
 
-                    <strong>
-                      đến
-                      <span id="max-price-value"> 550.000 đ </span>
-                    </strong>
+                  <div class="price-filter">
+                    <input
+                      type="range"
+                      id="max-price"
+                      min="50000"
+                      max="550000"
+                      step="10000"
+                      value="550000"
+                    />
+
+                    <div class="price-filter-value">
+                      <span>Từ 0 đ</span>
+
+                      <strong>
+                        đến
+                        <span id="max-price-value"> 550.000 đ </span>
+                      </strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="filter-actions">
+                  <button
+                    id="reset-filter"
+                    class="btn btn-outline"
+                    type="button"
+                  >
+                    <svg viewBox="0 0 24 24">
+                      <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+                      <path d="M3 3v5h5" />
+                    </svg>
+                    Xóa bộ lọc
+                  </button>
+                </div>
+              </div>
+            </aside>
+
+            <div class="products-content">
+              <div class="toolbar">
+                <div>
+                  <h2>Danh sách sản phẩm</h2>
+                  <span id="product-count">0 sản phẩm</span>
+                </div>
+
+                <div class="toolbar-actions">
+                  <label class="sort-label" for="sort-product">Sắp xếp</label>
+
+                  <div class="select-wrap sort-select">
+                    <select id="sort-product">
+                      <option value="default">Mặc định</option>
+
+                      <option value="price-asc">Giá thấp đến cao</option>
+
+                      <option value="price-desc">Giá cao đến thấp</option>
+
+                      <option value="name-asc">Tên A - Z</option>
+
+                      <option value="name-desc">Tên Z - A</option>
+                    </select>
                   </div>
                 </div>
               </div>
-              <div class="filter-actions">
-                <button id="reset-filter" class="btn btn-outline" type="button">
-                  Xóa bộ lọc
-                </button>
+
+              <div id="products-list" class="product-grid products-page-grid">
+                <!-- JavaScript render sản phẩm tại đây -->
               </div>
-            </div>
-          </aside>
-
-          <div class="products-content">
-            <div class="toolbar">
-              <div>
-                <h2>Danh sách sản phẩm</h2>
-                <span id="product-count"> 0 sản phẩm </span>
-              </div>
-
-              <div class="toolbar-actions">
-                <label class="sort-label" for="sort-product"> Sắp xếp </label>
-
-                <div class="select-wrap sort-select">
-                  <select id="sort-product">
-                    <option value="default">Mặc định</option>
-
-                    <option value="price-asc">Giá thấp đến cao</option>
-
-                    <option value="price-desc">Giá cao đến thấp</option>
-
-                    <option value="name-asc">Tên A - Z</option>
-
-                    <option value="name-desc">Tên Z - A</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div id="products-list" class="product-grid products-page-grid">
-              <!-- JavaScript render sản phẩm tại đây -->
             </div>
           </div>
         </div>

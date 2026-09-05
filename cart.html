@@ -3,90 +3,164 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>COFFEE - Giỏ hàng</title>
+    <title>CÔFÊ SHOP - Giỏ hàng</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
+  <body class="cart-page-body">
     <header class="site-header">
       <div class="container header-inner">
-        <a href="index.html" class="logo">COFFEE</a>
+        <a href="index.html" class="logo">CÔFÊ SHOP</a>
 
-        <nav class="main-nav">
+        <nav class="main-nav desktop-nav" aria-label="Điều hướng chính">
           <a href="index.html">Trang chủ</a>
           <a href="products.html">Sản phẩm</a>
-          <a href="cart.html" class="active">Giỏ hàng</a>
+          <a href="cart.html" class="active">
+            Giỏ hàng
+            <span class="nav-cart-count" aria-label="3 sản phẩm">3</span>
+          </a>
           <a href="checkout.html">Thanh toán</a>
+          <a href="login.html">Tài khoản</a>
         </nav>
+
+        <details class="mobile-nav">
+          <summary aria-label="Mở menu điều hướng" title="Menu">
+            <svg class="menu-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg class="close-icon" aria-hidden="true" viewBox="0 0 24 24">
+              <path d="m6 6 12 12M18 6 6 18" />
+            </svg>
+          </summary>
+
+          <nav class="main-nav mobile-menu" aria-label="Điều hướng di động">
+            <a href="index.html">Trang chủ</a>
+            <a href="products.html">Sản phẩm</a>
+            <a href="cart.html" class="active">
+              Giỏ hàng
+              <span class="nav-cart-count" aria-label="3 sản phẩm">3</span>
+            </a>
+            <a href="checkout.html">Thanh toán</a>
+            <a href="login.html">Tài khoản</a>
+          </nav>
+        </details>
       </div>
     </header>
 
-    <main>
-      <section class="page-hero">
+    <main id="cart-page">
+      <section id="cart-section" class="cart-section">
         <div class="container">
-          <p class="eyebrow">Giỏ hàng</p>
-          <h1>Giỏ hàng</h1>
-          <p>Kiểm tra lại món đã chọn trước khi chuyển sang bước thanh toán.</p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container cart-layout">
-          <div class="cart-items">
-            <div class="cart-row">
-              <img
-                src="./images/photo-1509042239860-f550ce710b93.jpeg"
-                alt="Cà phê sữa đá"
-              />
-              <div>
-                <h3>Cà phê sữa đá</h3>
-                <p>35.000 đ / ly</p>
-              </div>
-              <input
-                type="number"
-                value="2"
-                min="1"
-                aria-label="Số lượng cà phê sữa đá"
-              />
-              <strong class="cart-price">70.000 đ</strong>
+          <div class="cart-page-heading">
+            <div>
+              <p class="cart-page-eyebrow">Giỏ hàng</p>
+              <h1>Giỏ hàng của bạn</h1>
+              <p>Kiểm tra sản phẩm và số lượng trước khi chuyển sang thanh toán.</p>
             </div>
 
-            <div class="cart-row">
-              <img
-                src="./images/photo-1514432324607-a09d9b4aefdd.jpeg"
-                alt="Cappuccino"
-              />
-              <div>
-                <h3>Cappuccino</h3>
-                <p>50.000 đ / ly</p>
-              </div>
-              <input
-                type="number"
-                value="1"
-                min="1"
-                aria-label="Số lượng cappuccino"
-              />
-              <strong class="cart-price">50.000 đ</strong>
-            </div>
+            <a href="products.html" class="cart-back-link">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m15 18-6-6 6-6" />
+                <path d="M9 12h10" />
+              </svg>
+              Tiếp tục mua sắm
+            </a>
           </div>
 
-          <aside class="order-box">
-            <h3>Tóm tắt đơn hàng</h3>
-            <div class="summary-line">
-              <span>Tạm tính</span>
-              <strong>120.000 đ</strong>
+          <div class="cart-layout">
+            <section class="cart-panel" aria-labelledby="cart-title">
+              <div class="cart-panel-header">
+                <div class="cart-panel-heading">
+                  <h2 id="cart-title">Sản phẩm</h2>
+                  <span id="cart-count">2 sản phẩm</span>
+                </div>
+
+                <button class="cart-clear" type="button">
+                  <svg aria-hidden="true" viewBox="0 0 24 24">
+                    <path d="M3 6h18" />
+                    <path d="M8 6V4h8v2" />
+                    <path d="m19 6-1 14H6L5 6" />
+                    <path d="M10 11v5M14 11v5" />
+                  </svg>
+                  Xóa hết
+                </button>
+              </div>
+
+              <div class="cart-items">
+                <!-- render cart items -->
+              </div>
+            </section>
+
+            <aside class="order-box cart-summary">
+              <div class="cart-summary-header">
+                <p>Đơn hàng</p>
+                <h2>Tóm tắt thanh toán</h2>
+              </div>
+
+              <div class="summary-line">
+                <span>Tạm tính</span>
+                <strong id="cart-summary"></strong>
+              </div>
+
+              <div class="summary-line">
+                <span>Phí giao hàng</span>
+                <strong>25.000 đ</strong>
+              </div>
+
+              <div class="summary-line cart-total-line">
+                <span>Tổng cộng</span>
+                <strong id="summary-total" class="summary-total"></strong>
+              </div>
+
+              <a href="checkout.html" class="btn cart-checkout-button">
+                Tiến hành thanh toán
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+
+              <p class="summary-note">Phí giao hàng có thể thay đổi theo khu vực nhận hàng.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+      <section
+        id="empty-cart-section"
+        class="empty-cart-section"
+        aria-labelledby="empty-cart-title"
+      >
+        <div class="container">
+          <div class="empty-cart-state">
+            <svg
+              class="empty-cart-icon"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="8" cy="21" r="1" />
+              <circle cx="19" cy="21" r="1" />
+              <path
+                d="M2.05 2.05H4L6.6 14.44A2 2 0 0 0 8.55 16h7.8a2 2 0 0 0 1.95-1.57L20 7H5.12"
+              />
+            </svg>
+
+            <p class="empty-cart-label">Giỏ hàng</p>
+            <h1 id="empty-cart-title">Giỏ hàng của bạn đang trống</h1>
+            <p class="empty-cart-description">
+              Bạn chưa thêm sản phẩm nào. Khám phá các loại cà phê và dụng cụ pha chế để bắt đầu đơn
+              hàng.
+            </p>
+
+            <div class="empty-cart-actions">
+              <a href="products.html" class="btn empty-cart-primary">
+                Xem sản phẩm
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+              <a href="index.html" class="empty-cart-home">Về trang chủ</a>
             </div>
-            <div class="summary-line">
-              <span>Phí giao hàng</span>
-              <strong>15.000 đ</strong>
-            </div>
-            <div class="summary-line">
-              <span>Tổng cộng</span>
-              <strong class="summary-total">135.000 đ</strong>
-            </div>
-            <a href="checkout.html" class="btn">Tiến hành thanh toán</a>
-            <a href="products.html" class="btn btn-outline">Mua thêm</a>
-          </aside>
+          </div>
         </div>
       </section>
     </main>

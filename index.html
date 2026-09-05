@@ -3,30 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>COFFEE - Trang chủ</title>
+    <title>CÔFÊ SHOP - Trang chủ</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="index.html" class="logo">COFFEE</a>
+        <a href="index.html" class="logo">CÔFÊ SHOP</a>
 
-        <nav class="main-nav">
+        <nav class="main-nav desktop-nav">
           <a href="index.html" class="active">Trang chủ</a>
           <a href="products.html">Sản phẩm</a>
-          <a href="cart.html">Giỏ hàng</a>
+          <a href="cart.html">
+            Giỏ hàng
+            <span class="nav-cart-count">0</span>
+          </a>
           <a href="checkout.html">Thanh toán</a>
+          <a href="login.html">Tài khoản</a>
         </nav>
+
+        <details class="mobile-nav">
+          <summary title="Menu">
+            <svg class="menu-icon" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg class="close-icon" viewBox="0 0 24 24">
+              <path d="m6 6 12 12M18 6 6 18" />
+            </svg>
+          </summary>
+
+          <nav class="main-nav mobile-menu">
+            <a href="index.html" class="active">Trang chủ</a>
+            <a href="products.html">Sản phẩm</a>
+            <a href="cart.html">
+              Giỏ hàng
+              <span class="nav-cart-count">0</span>
+            </a>
+            <a href="checkout.html">Thanh toán</a>
+            <a href="login.html">Tài khoản</a>
+          </nav>
+        </details>
       </div>
     </header>
 
     <main id="home-page">
-      <section class="hero">
+      <section class="hero hero-slider">
+        <div class="hero-slides">
+          <div class="hero-slide hero-slide-one is-active"></div>
+          <div class="hero-slide hero-slide-two"></div>
+          <div class="hero-slide hero-slide-three"></div>
+        </div>
+
         <div class="container hero-content">
           <p class="eyebrow">Cửa hàng cà phê</p>
 
-          <h1>COFFEE</h1>
+          <h1>CÔFÊ SHOP</h1>
 
           <p>
             Khám phá những dòng cà phê rang xay chất lượng, từ Robusta đậm vị
@@ -34,21 +66,38 @@
             yêu cà phê.
           </p>
 
-          <a href="products.html" class="btn">Khám phá sản phẩm</a>
+          <a href="products.html" class="btn hero-primary">
+            Khám phá sản phẩm
+            <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="slider-dots">
+          <button type="button" class="slider-dot is-active" data-slide="0"></button>
+          <button type="button" class="slider-dot" data-slide="1"></button>
+          <button type="button" class="slider-dot" data-slide="2"></button>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section home-benefits">
         <div class="container">
-          <h2 class="section-title">Vì sao chọn COFFEE?</h2>
-
-          <p class="section-desc">
-            Chúng tôi lựa chọn những sản phẩm cà phê chất lượng, rang mới và
-            đóng gói cẩn thận để mang đến trải nghiệm cà phê tốt hơn mỗi ngày.
-          </p>
+          <div class="section-heading section-heading-centered">
+            <p class="section-eyebrow">Chất lượng từ những điều cơ bản</p>
+            <h2 class="section-title">Vì sao chọn CÔFÊ SHOP?</h2>
+            <p class="section-desc">
+              Sản phẩm được chọn kỹ, rang mới và đóng gói cẩn thận để mỗi lần
+              pha đều giữ trọn hương vị.
+            </p>
+          </div>
 
           <div class="feature-grid">
             <div class="feature-item">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="6" />
+                <path d="M15.5 13 17 22l-5-3-5 3 1.5-9" />
+              </svg>
               <h3>Cà phê tuyển chọn</h3>
               <p>
                 Hạt cà phê được lựa chọn từ những vùng trồng nổi tiếng như Buôn
@@ -57,6 +106,11 @@
             </div>
 
             <div class="feature-item">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path
+                  d="M12 2c1 4-2 5-2 8 0 2 1 3 2 3 2 0 3-2 3-4 3 2 5 5 5 8a8 8 0 0 1-16 0c0-4 2-7 6-10-1 3 0 5 2 6"
+                />
+              </svg>
               <h3>Rang mới mỗi ngày</h3>
               <p>
                 Cà phê được rang theo từng mẻ nhỏ để giữ được hương thơm và đặc
@@ -65,6 +119,13 @@
             </div>
 
             <div class="feature-item">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path d="m16.5 9.4-9-5.2" />
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7Z"
+                />
+                <path d="M3.3 7 12 12l8.7-5M12 22V12" />
+              </svg>
               <h3>Đa dạng sản phẩm</h3>
               <p>
                 Từ cà phê hạt, cà phê xay, drip bag đến dụng cụ pha và combo
@@ -77,62 +138,80 @@
 
       <section id="hot-products" class="section light-section">
         <div class="container">
-          <h2 class="section-title">Sản phẩm bán chạy</h2>
+          <div class="product-section-heading">
+            <div>
+              <p class="section-eyebrow">Được yêu thích</p>
+              <h2 class="section-title">Sản phẩm bán chạy</h2>
+              <p class="section-desc">
+                Những lựa chọn được khách hàng yêu thích nhất tại CÔFÊ SHOP.
+              </p>
+            </div>
 
-          <p class="section-desc">
-            Những sản phẩm được khách hàng lựa chọn nhiều nhất tại COFFEE.
-          </p>
+            <a href="products.html?status=hot" class="section-link">
+              Xem tất cả
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
 
           <div class="product-grid">
             <!-- render hot-products -->
-          </div>
-
-          <div class="section-more">
-            <a href="products.html?status=hot" class="btn"
-              >Xem tất cả sản phẩm</a
-            >
           </div>
         </div>
       </section>
 
       <section id="new-products" class="section">
         <div class="container">
-          <h2 class="section-title">Sản phẩm mới</h2>
+          <div class="product-section-heading">
+            <div>
+              <p class="section-eyebrow">Vừa lên kệ</p>
+              <h2 class="section-title">Sản phẩm mới</h2>
+              <p class="section-desc">
+                Những dòng cà phê và dụng cụ mới vừa được bổ sung.
+              </p>
+            </div>
 
-          <p class="section-desc">
-            Khám phá những dòng cà phê và sản phẩm mới vừa được bổ sung vào cửa
-            hàng.
-          </p>
+            <a href="products.html?status=new" class="section-link">
+              Xem sản phẩm mới
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
 
           <div class="product-grid">
             <!-- render new-products -->
-          </div>
-
-          <div class="section-more">
-            <a href="products.html?status=new" class="btn">Xem sản phẩm mới</a>
           </div>
         </div>
       </section>
 
       <section id="sale-products" class="section light-section">
         <div class="container">
-          <h2 class="section-title">Sản phẩm đang giảm giá</h2>
+          <div class="product-section-heading">
+            <div>
+              <p class="section-eyebrow">Ưu đãi trong tuần</p>
+              <h2 class="section-title">Sản phẩm đang giảm giá</h2>
+              <p class="section-desc">
+                Những sản phẩm có mức giá tốt trong thời gian giới hạn.
+              </p>
+            </div>
 
-          <p class="section-desc">
-            Những sản phẩm đang có mức giá ưu đãi trong thời gian giới hạn.
-          </p>
+            <a href="products.html?status=sale" class="section-link">
+              Xem ưu đãi
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
 
           <div class="product-grid">
             <!-- render sale-products -->
           </div>
-
-          <div class="section-more">
-            <a href="products.html?status=sale" class="btn">Xem ưu đãi</a>
-          </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section home-about">
         <div class="container about-inner">
           <img
             src="./images/hat-ca-phe-den-tach-ca-phe.jpeg"
@@ -140,13 +219,14 @@
           />
 
           <div class="about-text">
+            <p class="section-eyebrow">Pha cà phê theo cách của bạn</p>
             <h2>Từ hạt cà phê đến tách cà phê của bạn</h2>
 
             <p>
-              COFFEE mong muốn giúp việc thưởng thức cà phê tại nhà trở nên đơn
-              giản hơn. Chúng tôi cung cấp nhiều dòng cà phê rang xay cùng dụng
-              cụ pha phù hợp cho phin, Espresso, Pour Over, French Press và Cold
-              Brew.
+              CÔFÊ SHOP mong muốn giúp việc thưởng thức cà phê tại nhà trở nên
+              đơn giản hơn. Chúng tôi cung cấp nhiều dòng cà phê rang xay cùng
+              dụng cụ pha phù hợp cho phin, Espresso, Pour Over, French Press và
+              Cold Brew.
             </p>
 
             <a href="products.html" class="btn">Khám phá cửa hàng</a>
@@ -162,5 +242,6 @@
     </footer>
 
     <script type="module" src="app.js"></script>
+    <script type="module" src="slider.js"></script>
   </body>
 </html>
