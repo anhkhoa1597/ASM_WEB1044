@@ -10,8 +10,6 @@ const calculateSubTotal = (price, quantity) => {
   return price * quantity;
 };
 
-const calculateTotal = () => {};
-
 const findProductById = (id) => {
   return products.find((p) => p.id === id);
 };
@@ -240,19 +238,103 @@ const resetFilter = () => {
   window.history.replaceState({}, "", "products.html");
 };
 
+const updateCartSummary = (total) => {
+  document.getElementById("cart-summary").innerText = formatPrice(total);
+  document.getElementById("summary-total").innerText = formatPrice(total + 25000);
+};
+
+const renderCart = () => {
+  const cartSection = document.querySelector("#cart-section");
+  const emptyCartSection = document.querySelector("#empty-cart-section");
+  if (cart.length === 0) {
+    cartSection.style.display = "none";
+    emptyCartSection.style.display = "flex";
+  } else {
+    emptyCartSection.style.display = "none";
+    cartSection.style.display = "block";
+    cartSection.querySelector("#cart-count").innerText = `${cart.length} sản phẩm`;
+    const cartItems = cartSection.querySelector(".cart-items");
+    let html = "";
+    let total = 0;
+    cart.forEach((item) => {
+      const product = findProductById(item.id);
+      total += product.price * item.quantity;
+      html += createCartItemHTML(product, item.quantity);
+    });
+    cartItems.innerHTML = html;
+    updateCartSummary(total);
+  }
+};
+
+const updateOrderSummary = (total) => {
+  document.getElementById("order-summary").innerText = formatPrice(total);
+  document.getElementById("order-total").innerText = formatPrice(total + 25000);
+};
+
+const createOrderItemHTML = (product, quantity) => {
+  return `
+  <div class="checkout-order-item">
+    <div>
+      <strong>${product.name}</strong>
+      <span>Số lượng: ${quantity}</span>
+    </div>
+    <strong>${formatPrice(product.price * quantity)}</strong>
+  </div>
+  `;
+};
+
+const renderOrder = () => {
+  const checkOutSummary = document.querySelector(".checkout-summary");
+  const orderList = checkOutSummary.querySelector(".checkout-order-list");
+  let total = 0;
+  let html = "";
+  cart.forEach((item) => {
+    const product = findProductById(item.id);
+    total += product.price * item.quantity;
+    html += createOrderItemHTML(product, item.quantity);
+  });
+  orderList.innerHTML = html;
+  updateOrderSummary(total);
+};
+
 const initHomePage = () => {
   const mainPage = document.getElementById("home-page");
   if (!mainPage) {
     return;
   }
-  // const slider = document.querySelector(".hero-slider");
-  // if (slider) {
-  //   // const dots = slider.querySelectorAll(".slider-dot");
-  //   const dots = Array.from(slider.querySelectorAll(".slider-dot"));
+  const heroSlider = document.querySelector(".hero-slider");
 
-  //   console.log(dots);
-  //   const activeSlideAndDot = () => {};
-  // }
+  if (heroSlider) {
+    const dots = heroSlider.querySelectorAll(".slider-dot");
+    const slides = heroSlider.querySelectorAll(".hero-slide");
+    let currentSlideIndex = 0;
+    const autoPlayDelay = 5000;
+    let autoPlay;
+    const showSlide = (index) => {
+      slides.forEach((s) => s.classList.remove("is-active"));
+      dots.forEach((d) => d.classList.remove("is-active"));
+      slides[index].classList.add("is-active");
+      dots[index].classList.add("is-active");
+      currentSlideIndex = index;
+    };
+
+    const startAutoPlay = () => {
+      clearInterval(autoPlay);
+      autoPlay = setInterval(() => {
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+        showSlide(currentSlideIndex);
+      }, autoPlayDelay);
+    };
+
+    dots.forEach((dot, index) =>
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        startAutoPlay();
+      }),
+    );
+
+    startAutoPlay();
+  }
 
   renderProductSection(
     "hot-products",
@@ -361,6 +443,7 @@ const initDetailPage = () => {
         </ul>
         <div class="buy-box">
           <input
+            class="product-quantity"
             type="number"
             value="1"
             min="1"
@@ -377,40 +460,19 @@ const initDetailPage = () => {
   }
 };
 
-const renderCart = () => {
-  const cartSection = document.querySelector("#cart-section");
-  const emptyCartSection = document.querySelector("#empty-cart-section");
-  if (cart.length === 0) {
-    cartSection.style.display = "none";
-    emptyCartSection.style.display = "flex";
-  } else {
-    emptyCartSection.style.display = "none";
-    cartSection.style.display = "block";
-    cartSection.querySelector("#cart-count").innerText = `${cart.length} sản phẩm`;
-    const cartItems = cartSection.querySelector(".cart-items");
-    let html = "";
-    let total = 0;
-    cart.forEach((item) => {
-      const product = findProductById(item.id);
-      total += product.price * item.quantity;
-      html += createCartItemHTML(product, item.quantity);
-    });
-    cartItems.innerHTML = html;
-    updateCartSummary(total);
-  }
-};
-
-const updateCartSummary = (total) => {
-  document.getElementById("cart-summary").innerText = formatPrice(total);
-  document.getElementById("summary-total").innerText = formatPrice(total + 25000);
-};
-
 const initCartPage = () => {
   const cartPage = document.getElementById("cart-page");
   if (!cartPage) {
     return;
   }
   renderCart();
+};
+
+const initCheckoutPage = () => {
+  const checkOutPage = document.getElementById("checkout-page");
+  if (!checkOutPage) return;
+  if (cart.length === 0) window.location.href = "cart.html";
+  renderOrder();
 };
 
 document.addEventListener("click", (e) => {
@@ -464,4 +526,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initProductsPage();
   initDetailPage();
   initCartPage();
+  initCheckoutPage();
 });
