@@ -1,6 +1,12 @@
+import validator from "https://esm.sh/validator";
 import { products } from "./data.js";
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+// localStorage.removeItem("auth");
+// localStorage.removeItem("rememberLogin");
 // localStorage.removeItem("cart");
+// localStorage.removeItem("users");
 
 const formatPrice = (price) => {
   return price.toLocaleString("vi-VN") + " đ";
@@ -12,32 +18,6 @@ const calculateSubTotal = (price, quantity) => {
 
 const findProductById = (id) => {
   return products.find((p) => p.id === id);
-};
-
-const addToCart = (id, quantity = 1) => {
-  id = Number(id);
-  const item = cart.find((i) => i.id === id);
-  if (item) item.quantity += quantity;
-  else cart.push({ id: id, quantity: quantity });
-  saveCart();
-};
-
-const removeItemFromCart = (id) => {
-  id = Number(id);
-  cart = cart.filter((i) => i.id !== id);
-  saveCart();
-  initCartPage();
-};
-
-const clearCart = () => {
-  cart = [];
-  saveCart();
-  initCartPage();
-};
-
-const saveCart = () => {
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderNavCartCount();
 };
 
 const createCartItemHTML = (product, quantity) => {
@@ -238,6 +218,32 @@ const resetFilter = () => {
   window.history.replaceState({}, "", "products.html");
 };
 
+const addToCart = (id, quantity = 1) => {
+  id = Number(id);
+  const item = cart.find((i) => i.id === id);
+  if (item) item.quantity += quantity;
+  else cart.push({ id: id, quantity: quantity });
+  saveCart();
+};
+
+const removeItemFromCart = (id) => {
+  id = Number(id);
+  cart = cart.filter((i) => i.id !== id);
+  saveCart();
+  initCartPage();
+};
+
+const clearCart = () => {
+  cart = [];
+  saveCart();
+  initCartPage();
+};
+
+const saveCart = () => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderNavCartCount();
+};
+
 const updateCartSummary = (total) => {
   document.getElementById("cart-summary").innerText = formatPrice(total);
   document.getElementById("summary-total").innerText = formatPrice(total + 25000);
@@ -258,7 +264,7 @@ const renderCart = () => {
     let total = 0;
     cart.forEach((item) => {
       const product = findProductById(item.id);
-      total += product.price * item.quantity;
+      total += calculateSubTotal(product.price, item.quantity);
       html += createCartItemHTML(product, item.quantity);
     });
     cartItems.innerHTML = html;
@@ -278,7 +284,7 @@ const createOrderItemHTML = (product, quantity) => {
       <strong>${product.name}</strong>
       <span>Số lượng: ${quantity}</span>
     </div>
-    <strong>${formatPrice(product.price * quantity)}</strong>
+    <strong>${formatPrice(calculateSubTotal(product.price, quantity))}</strong>
   </div>
   `;
 };
@@ -290,11 +296,64 @@ const renderOrder = () => {
   let html = "";
   cart.forEach((item) => {
     const product = findProductById(item.id);
-    total += product.price * item.quantity;
+    total += calculateSubTotal(product.price, item.quantity);
     html += createOrderItemHTML(product, item.quantity);
   });
   orderList.innerHTML = html;
   updateOrderSummary(total);
+};
+
+const hashPassword = (password) => {
+  //My function hashpassword
+  let hashedPassword = "";
+  for (let index = 0; index < password.length; index++) {
+    const element = password[index];
+    hashedPassword += String.fromCharCode(element.charCodeAt(0) * 2);
+  }
+  return hashedPassword;
+};
+
+const getAuth = () => {
+  const auth =
+    JSON.parse(localStorage.getItem("auth")) || JSON.parse(sessionStorage.getItem("auth"));
+  if (!auth) return null;
+  if (Date.now() > auth.expiredAt || !auth.expiredAt) {
+    localStorage.removeItem("auth");
+    sessionStorage.removeItem("auth");
+    return null;
+  }
+
+  return auth;
+};
+
+const handleLogout = () => {
+  localStorage.removeItem("auth");
+  sessionStorage.removeItem("auth");
+  window.location.href = "login.html";
+};
+
+const checkAuth = () => {
+  const auth = getAuth();
+  if (auth) return true;
+  else return false;
+};
+
+const requireAuth = () => {
+  if (!checkAuth()) {
+    window.location.href = "login.html";
+    return false;
+  }
+  return true;
+};
+
+const initHeader = () => {
+  const accounts = document.querySelectorAll(".account");
+  if (checkAuth())
+    accounts.forEach((a) => {
+      a.innerText = "Đăng xuất";
+      a.addEventListener("click", handleLogout);
+    });
+  renderNavCartCount();
 };
 
 const initHomePage = () => {
@@ -302,6 +361,7 @@ const initHomePage = () => {
   if (!mainPage) {
     return;
   }
+  localStorage.setItem("currentPage", window.location.href);
   const heroSlider = document.querySelector(".hero-slider");
 
   if (heroSlider) {
@@ -355,6 +415,8 @@ const initProductsPage = () => {
   if (!productsPage) {
     return;
   }
+  localStorage.setItem("currentPage", window.location.href);
+
   const searchInput = document.getElementById("search-product");
   const categorySelect = document.getElementById("category-product");
   const statusSelect = document.getElementById("status-product");
@@ -387,9 +449,12 @@ const initDetailPage = () => {
   if (!detailPage) {
     return;
   }
+
   const productDetail = document.getElementById("product-detail");
   const params = new URLSearchParams(window.location.search);
   const id = Number(params.get("id"));
+  localStorage.setItem("currentPage", window.location.href);
+
   const product = findProductById(id);
   if (!product) {
     productDetail.classList.add("not-found");
@@ -465,17 +530,171 @@ const initCartPage = () => {
   if (!cartPage) {
     return;
   }
+  localStorage.setItem("currentPage", window.location.href);
+  if (!requireAuth()) return;
   renderCart();
 };
 
 const initCheckoutPage = () => {
   const checkOutPage = document.getElementById("checkout-page");
   if (!checkOutPage) return;
-  if (cart.length === 0) window.location.href = "cart.html";
+  localStorage.setItem("currentPage", window.location.href);
+
+  if (!requireAuth()) return;
+  if (cart.length === 0) {
+    window.location.href = "cart.html";
+    return;
+  }
+  checkOutPage.querySelector("#name").value = getAuth().name || "";
+  checkOutPage.querySelector("#phone").value = getAuth().phone || "";
   renderOrder();
 };
 
+const initRegisterPage = () => {
+  const registerPage = document.getElementById("register-page");
+  if (!registerPage) return;
+  const registerForm = registerPage.querySelector(".auth-form");
+  registerForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const registerName = registerForm.querySelector("#register-name").value.trim();
+    const registerPhone = registerForm.querySelector("#register-phone").value.trim();
+    const registerEmail = registerForm.querySelector("#register-email").value.trim();
+    const registerPassword = registerForm.querySelector("#register-password").value.toLowerCase();
+    const registerConfirmPassword = registerForm.querySelector("#register-confirm-password").value;
+    const registerTerms = registerForm.querySelector("#register-terms").checked;
+
+    const registerFormError = registerForm.querySelector("#register-form-error");
+    const registerFormSuccess = registerForm.querySelector("#register-form-success");
+    const registerNameError = registerForm.querySelector("#register-name-error");
+    const registerPhoneError = registerForm.querySelector("#register-phone-error");
+    const registerEmailError = registerForm.querySelector("#register-email-error");
+    const registerPasswordError = registerForm.querySelector("#register-password-error");
+    const registerConfirmPasswordError = registerForm.querySelector(
+      "#register-confirm-password-error",
+    );
+    const registerTermsError = registerForm.querySelector("#register-terms-error");
+
+    registerNameError.innerText = "";
+    registerPhoneError.innerText = "";
+    registerEmailError.innerText = "";
+    registerPasswordError.innerText = "";
+    registerConfirmPasswordError.innerText = "";
+    registerTermsError.innerText = "";
+    registerFormError.classList.remove("is-visible");
+    registerFormSuccess.classList.remove("is-visible");
+    let isValid = true;
+    if (validator.isEmpty(registerName)) {
+      isValid = false;
+      registerNameError.innerText = "Vui lòng nhập tên.";
+    }
+    if (!validator.isMobilePhone(registerPhone, "vi-VN")) {
+      isValid = false;
+      registerPhoneError.innerText = "Vui lòng nhập số điện thoại tại VN hợp lệ.";
+    }
+    if (!validator.isEmail(registerEmail)) {
+      isValid = false;
+      registerEmailError.innerText = "Vui lòng nhập email hợp lệ.";
+    }
+    if (
+      !validator.isStrongPassword(registerPassword, {
+        minLowercase: 0,
+        minUppercase: 0,
+        minNumbers: 0,
+        minSymbols: 0,
+      })
+    ) {
+      isValid = false;
+      registerPasswordError.innerText = "Mật khẩu phải có ít nhất 8 ký tự";
+    }
+    if (registerConfirmPassword !== registerPassword) {
+      isValid = false;
+      registerConfirmPasswordError.innerText = "Mật khẩu nhập lại chưa trùng khớp.";
+    }
+    if (!registerTerms) {
+      isValid = false;
+      registerTermsError.innerText = "Bạn cần đồng ý với điều khoản trước khi đăng ký.";
+    }
+    if (isValid) {
+      users = JSON.parse(localStorage.getItem("users")) || [];
+      let userExist = users.find((u) => u.phone === registerPhone || u.email === registerEmail);
+      if (userExist) {
+        registerFormError.classList.add("is-visible");
+      } else {
+        users.push({
+          phone: registerPhone,
+          email: registerEmail,
+          name: registerName,
+          password: hashPassword(registerPassword),
+        });
+        localStorage.setItem("users", JSON.stringify(users));
+        registerFormSuccess.classList.add("is-visible");
+        registerForm.reset();
+        registerForm.querySelector("#register-password").type = "password";
+        registerForm.querySelector("#register-confirm-password").type = "password";
+        registerForm
+          .querySelectorAll(".password-toggle")
+          .forEach((t) => t.classList.remove("is-visible"));
+      }
+    }
+  });
+};
+
+const initLoginPage = () => {
+  const loginPage = document.getElementById("login-page");
+  if (!loginPage) return;
+  if (checkAuth()) window.location.href = localStorage.getItem("currentPage") || "index.html";
+  const loginForm = loginPage.querySelector(".auth-form");
+  const rememberLogin = JSON.parse(localStorage.getItem("rememberLogin"));
+  if (rememberLogin) {
+    loginForm.querySelector("#login-email").value = rememberLogin.email;
+  }
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const loginEmail = loginForm.querySelector("#login-email").value.trim().toLowerCase();
+    const loginPassword = loginForm.querySelector("#login-password").value;
+    const loginRemember = loginForm.querySelector("#login-remember").checked;
+    const loginFormError = loginForm.querySelector("#login-form-error");
+    const loginEmailError = loginForm.querySelector("#login-email-error");
+
+    loginEmailError.innerText = "";
+    loginFormError.classList.remove("is-visible");
+    if (!validator.isEmail(loginEmail)) {
+      loginEmailError.innerText = "Vui lòng nhập email hợp lệ.";
+    } else {
+      users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(
+        (u) => u.email === loginEmail && u.password === hashPassword(loginPassword),
+      );
+      if (!user) {
+        loginFormError.classList.add("is-visible");
+      } else {
+        const auth = {
+          email: user.email,
+          name: user.name,
+          phone: user.phone,
+          expiredAt: Date.now() + 24 * 60 * 60 * 1000,
+        };
+        localStorage.setItem(
+          "rememberLogin",
+          JSON.stringify({
+            email: loginEmail,
+          }),
+        );
+        localStorage.removeItem("auth");
+        sessionStorage.removeItem("auth");
+        if (loginRemember) {
+          localStorage.setItem("auth", JSON.stringify(auth));
+        } else {
+          sessionStorage.setItem("auth", JSON.stringify(auth));
+        }
+        window.location.href = localStorage.getItem("currentPage") || "index.html";
+      }
+    }
+  });
+};
+
 document.addEventListener("click", (e) => {
+  const passwordToggle = e.target.closest(".password-toggle");
   const addButton = e.target.closest(".add-to-cart");
   const removeButton = e.target.closest(".cart-remove");
   const clearButton = e.target.closest(".cart-clear");
@@ -487,7 +706,6 @@ document.addEventListener("click", (e) => {
       const quantityInput = buyBox.querySelector(".product-quantity");
       quantity = Number(quantityInput.value);
     }
-
     addToCart(addButton.dataset.id, quantity);
   }
 
@@ -497,6 +715,13 @@ document.addEventListener("click", (e) => {
 
   if (clearButton) {
     clearCart();
+  }
+
+  if (passwordToggle) {
+    const input = passwordToggle.closest(".password-input").querySelector("input");
+    const showPassword = input.type === "password";
+    input.type = showPassword ? "text" : "password";
+    passwordToggle.classList.toggle("is-visible", showPassword);
   }
 });
 
@@ -521,10 +746,12 @@ document.addEventListener("input", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderNavCartCount();
+  initHeader();
   initHomePage();
   initProductsPage();
   initDetailPage();
   initCartPage();
   initCheckoutPage();
+  initRegisterPage();
+  initLoginPage();
 });

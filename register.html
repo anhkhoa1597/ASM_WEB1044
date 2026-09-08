@@ -20,11 +20,11 @@
             <span class="nav-cart-count">0</span>
           </a>
           <a href="checkout.html">Thanh toán</a>
-          <a href="login.html" class="active">Tài khoản</a>
+          <a href="login.html" class="active account">Tài khoản</a>
         </nav>
 
         <details class="mobile-nav">
-          <summary title="Menu">
+          <summary>
             <svg class="menu-icon" viewBox="0 0 24 24">
               <path d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -41,13 +41,13 @@
               <span class="nav-cart-count">0</span>
             </a>
             <a href="checkout.html">Thanh toán</a>
-            <a href="login.html" class="active">Tài khoản</a>
+            <a href="login.html" class="active account">Tài khoản</a>
           </nav>
         </details>
       </div>
     </header>
 
-    <main class="auth-page">
+    <main id="register-page" class="auth-page">
       <section class="auth-section">
         <div class="container">
           <div class="auth-shell auth-shell-register">
@@ -61,7 +61,7 @@
             <div class="auth-panel">
               <div class="auth-heading">
                 <p class="section-eyebrow">Thành viên mới</p>
-                <h1 id="register-title">Tạo tài khoản</h1>
+                <h1>Tạo tài khoản</h1>
                 <p>Điền thông tin bên dưới để đăng ký tài khoản mới.</p>
               </div>
 
@@ -77,6 +77,7 @@
                       autocomplete="name"
                       required
                     />
+                    <p class="auth-field-feedback" id="register-name-error"></p>
                   </div>
 
                   <div class="auth-field">
@@ -87,8 +88,10 @@
                       type="tel"
                       placeholder="0901 234 567"
                       autocomplete="tel"
+                      pattern="0[0-9\s]{9,12}"
                       required
                     />
+                    <p class="auth-field-feedback" id="register-phone-error"></p>
                   </div>
                 </div>
 
@@ -102,46 +105,88 @@
                     autocomplete="email"
                     required
                   />
+                  <p class="auth-field-feedback" id="register-email-error"></p>
                 </div>
 
                 <div class="auth-form-grid">
                   <div class="auth-field">
                     <label for="register-password">Mật khẩu</label>
-                    <input
-                      id="register-password"
-                      name="password"
-                      type="password"
-                      placeholder="Tối thiểu 8 ký tự"
-                      autocomplete="new-password"
-                      minlength="8"
-                      required
-                    />
+                    <div class="password-input">
+                      <input
+                        id="register-password"
+                        name="password"
+                        type="password"
+                        placeholder="Tối thiểu 8 ký tự"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                      />
+                      <button type="button" class="password-toggle" title="Hiện mật khẩu">
+                        <svg viewBox="0 0 24 24">
+                          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+                          <circle cx="12" cy="12" r="3" />
+                          <path class="password-toggle-slash" d="m3 3 18 18" />
+                        </svg>
+                      </button>
+                    </div>
+                    <p class="auth-field-feedback" id="register-password-error"></p>
                   </div>
 
                   <div class="auth-field">
-                    <label for="register-confirm-password"
-                      >Nhập lại mật khẩu</label
-                    >
-                    <input
-                      id="register-confirm-password"
-                      name="confirm-password"
-                      type="password"
-                      placeholder="Nhập lại mật khẩu"
-                      autocomplete="new-password"
-                      minlength="8"
-                      required
-                    />
+                    <label for="register-confirm-password">Nhập lại mật khẩu</label>
+                    <div class="password-input">
+                      <input
+                        id="register-confirm-password"
+                        name="confirm-password"
+                        type="password"
+                        placeholder="Nhập lại mật khẩu"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                      />
+                      <button type="button" class="password-toggle">
+                        <svg viewBox="0 0 24 24">
+                          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+                          <circle cx="12" cy="12" r="3" />
+                          <path class="password-toggle-slash" d="m3 3 18 18" />
+                        </svg>
+                      </button>
+                    </div>
+                    <p class="auth-field-feedback" id="register-confirm-password-error"></p>
                   </div>
                 </div>
 
                 <label class="auth-check auth-terms">
-                  <input type="checkbox" name="terms" required />
+                  <input id="register-terms" type="checkbox" name="terms"/>
                   <span>Tôi đồng ý với điều khoản sử dụng của CÔFÊ SHOP.</span>
                 </label>
+                <p class="auth-field-feedback auth-check-feedback" id="register-terms-error"></p>
 
-                <button type="submit" class="btn auth-submit">
-                  Tạo tài khoản
-                </button>
+                <button type="submit" class="btn auth-submit">Tạo tài khoản</button>
+                <div class="auth-alert auth-alert-error" id="register-form-error">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v6M12 17h.01" />
+                  </svg>
+                  <div>
+                    <strong>Không thể tạo tài khoản</strong>
+                    <span>Email hoặc số điện thoại đã được sử dụng.</span>
+                  </div>
+                </div>
+
+                <div class="auth-alert auth-alert-success" id="register-form-success">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="m8.5 12.5 2.5 2.5 4.5-5" />
+                  </svg>
+                  <div>
+                    <strong>Đăng ký thành công</strong>
+                    <span
+                      >Bạn có thể đăng nhập bằng tài khoản vừa tạo.
+                      <a href="login.html" class="auth-alert-link">Đăng nhập ngay</a></span
+                    >
+                  </div>
+                </div>
               </form>
 
               <p class="auth-switch">
@@ -159,5 +204,6 @@
         <p>Bản quyền © 2026 Đặng Anh Khoa</p>
       </div>
     </footer>
+    <script type="module" src="app.js"></script>
   </body>
 </html>

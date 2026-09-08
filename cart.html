@@ -12,36 +12,36 @@
       <div class="container header-inner">
         <a href="index.html" class="logo">CÔFÊ SHOP</a>
 
-        <nav class="main-nav desktop-nav" aria-label="Điều hướng chính">
+        <nav class="main-nav desktop-nav">
           <a href="index.html">Trang chủ</a>
           <a href="products.html">Sản phẩm</a>
           <a href="cart.html" class="active">
             Giỏ hàng
-            <span class="nav-cart-count" aria-label="3 sản phẩm">3</span>
+            <span class="nav-cart-count">3</span>
           </a>
           <a href="checkout.html">Thanh toán</a>
-          <a href="login.html">Tài khoản</a>
+          <a class="account" href="login.html">Tài khoản</a>
         </nav>
 
         <details class="mobile-nav">
-          <summary aria-label="Mở menu điều hướng" title="Menu">
-            <svg class="menu-icon" aria-hidden="true" viewBox="0 0 24 24">
+          <summary>
+            <svg class="menu-icon" viewBox="0 0 24 24">
               <path d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-            <svg class="close-icon" aria-hidden="true" viewBox="0 0 24 24">
+            <svg class="close-icon" viewBox="0 0 24 24">
               <path d="m6 6 12 12M18 6 6 18" />
             </svg>
           </summary>
 
-          <nav class="main-nav mobile-menu" aria-label="Điều hướng di động">
+          <nav class="main-nav mobile-menu">
             <a href="index.html">Trang chủ</a>
             <a href="products.html">Sản phẩm</a>
             <a href="cart.html" class="active">
               Giỏ hàng
-              <span class="nav-cart-count" aria-label="3 sản phẩm">3</span>
+              <span class="nav-cart-count">3</span>
             </a>
             <a href="checkout.html">Thanh toán</a>
-            <a href="login.html">Tài khoản</a>
+            <a class="account" href="login.html">Tài khoản</a>
           </nav>
         </details>
       </div>
@@ -58,7 +58,7 @@
             </div>
 
             <a href="products.html" class="cart-back-link">
-              <svg aria-hidden="true" viewBox="0 0 24 24">
+              <svg viewBox="0 0 24 24">
                 <path d="m15 18-6-6 6-6" />
                 <path d="M9 12h10" />
               </svg>
@@ -67,15 +67,15 @@
           </div>
 
           <div class="cart-layout">
-            <section class="cart-panel" aria-labelledby="cart-title">
+            <section class="cart-panel">
               <div class="cart-panel-header">
                 <div class="cart-panel-heading">
-                  <h2 id="cart-title">Sản phẩm</h2>
+                  <h2>Sản phẩm</h2>
                   <span id="cart-count">2 sản phẩm</span>
                 </div>
 
                 <button class="cart-clear" type="button">
-                  <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <svg viewBox="0 0 24 24">
                     <path d="M3 6h18" />
                     <path d="M8 6V4h8v2" />
                     <path d="m19 6-1 14H6L5 6" />
@@ -113,7 +113,7 @@
 
               <a href="checkout.html" class="btn cart-checkout-button">
                 Tiến hành thanh toán
-                <svg aria-hidden="true" viewBox="0 0 24 24">
+                <svg viewBox="0 0 24 24">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
               </a>
@@ -123,16 +123,11 @@
           </div>
         </div>
       </section>
-      <section
-        id="empty-cart-section"
-        class="empty-cart-section"
-        aria-labelledby="empty-cart-title"
-      >
+      <section id="empty-cart-section" class="empty-cart-section">
         <div class="container">
           <div class="empty-cart-state">
             <svg
               class="empty-cart-icon"
-              aria-hidden="true"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +140,7 @@
             </svg>
 
             <p class="empty-cart-label">Giỏ hàng</p>
-            <h1 id="empty-cart-title">Giỏ hàng của bạn đang trống</h1>
+            <h1>Giỏ hàng của bạn đang trống</h1>
             <p class="empty-cart-description">
               Bạn chưa thêm sản phẩm nào. Khám phá các loại cà phê và dụng cụ pha chế để bắt đầu đơn
               hàng.
@@ -154,7 +149,7 @@
             <div class="empty-cart-actions">
               <a href="products.html" class="btn empty-cart-primary">
                 Xem sản phẩm
-                <svg aria-hidden="true" viewBox="0 0 24 24">
+                <svg viewBox="0 0 24 24">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
               </a>
